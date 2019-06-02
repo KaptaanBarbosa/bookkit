@@ -1,27 +1,15 @@
+//create and dispatch the action
 import {
     createStore
 } from 'redux';
 
-// create the store
-const store = createStore(reducer);
-
-function reducer(state = {}, action) {
-    switch (action.type) {
-        case "POSTBOOK":
-            return {
-                books: [...state, ...action.payload]
-            };
-            break;
-        case "DECREMENT":
-            return action.payload;
-            break;
-    }
+import reducers from './reducers/index'
+const store = createStore(reducers);
 
 
-}
-
+// to eavesdrop of store affairs
 store.subscribe(() => {
-    console.log("current state is :", store.getState().price);
+    console.log("current state is :", store.getState().book);
 });
 
 
@@ -40,15 +28,29 @@ store.dispatch({
             title: "Hari Putter aur paras paththar",
             description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
             price: "999.00"
+        },
+        {
+            id: 2,
+            title: "Hari Putter aadhe khoon wala Rajkumar",
+            description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+            price: "999.00"
         }
     ]
 });
-
-//create and dispatch the action
-
 store.dispatch({
-    type: "DELETEBOOK",
+    type: "DELBOOK",
     payload: {
         id: 3
     }
 });
+
+store.dispatch({
+    type: "ADD_ITEM",
+    payload: {
+        id: 2,
+        title: "Hari Putter aadhe khoon wala Rajkumar",
+        description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+        price: "999.00"
+    }
+})
+//create and dispatch the action
