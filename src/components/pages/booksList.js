@@ -25,7 +25,7 @@ class BooksList extends Component {
             <Navbar color="faded" light expand="md">
     
               <NavbarBrand href="/">
-                React Bootstrap Example
+                 Pustak yaha se khareedein
               </NavbarBrand>
               <Nav className="ml-auto" navbar>
     
@@ -33,8 +33,8 @@ class BooksList extends Component {
                   <NavLink className="font-weight-bold" href="/">Home</NavLink>
                 </NavItem>
                 <NavItem className="d-flex align-items-center">
-                  <NavLink className="font-weight-bold" href="https://www.techiediaries.com/react-bootstrap">
-                    Tutorial
+                  <NavLink className="font-weight-bold">
+                    Cart
                   </NavLink>
                 </NavItem>
     
@@ -42,14 +42,14 @@ class BooksList extends Component {
               </Nav>
             </Navbar>
     
-            <Container fluid>
+            <Container class="container-fluid">
     
     
               <Row>
                 <Col>
                   {this.props.books.books.map((contact) => (
     
-                    <Card>
+                    <Card className="col-sm">
                       <CardBody>
                         <CardTitle className="h3 mb-2 pt-2 font-weight-bold">{contact.title}</CardTitle>
                         <CardSubtitle className="mb-3 font-weight-light text-uppercase">{contact.description}</CardSubtitle>
@@ -57,27 +57,31 @@ class BooksList extends Component {
                         <Row>
     
                         <Col>
-                              <Button color="success">Call</Button>
+                              <Button color="success">UpOrDown</Button>
                         </Col>
                         <Col sm={'auto'}>
-                              <Button color="warning">Message</Button>
+                              <Button color="warning">Add a review</Button>
                         </Col>
                         <Col sm={'auto'}>
-                              <Button color="success">Email</Button>
+                              <Button color="success">AddtoCart</Button>
                         </Col>
                         </Row>
                       </CardBody>
                     </Card>
-    
-    
+                    
     
                   ))}
                 </Col>
               </Row>
-    
+              <Row>
+              <Button class="btn btn-info btn-lg" onClick={this.props.getbook}>
+              <span class="glyphicon glyphicon-refresh"></span>
+              refresh
+             </Button>
+             </Row>
             </Container>
           </Fragment>
-            <button onClick={this.props.getbook}></button>
+           
             
             </div>)
         }
