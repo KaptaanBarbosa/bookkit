@@ -4,23 +4,46 @@ import {
 
 // create the store
 const initstate = {
-    book: []
+    books:[{
+            id: 3,
+            title: "Hari Putter aur azkabaan k kaidi",
+            description: "Hari Putter k saamne khulne wala hai ek raaz, uske pita ka khooni unka apna langotiya yaar",
+            price: "599.00"
+        },
+        {
+            id: 1,
+            title: "Hari Putter aur paras paththar",
+            description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+            price: "999.00"
+        },
+        {
+            id: 2,
+            title: "Hari Putter aadhe khoon wala Rajkumar",
+            description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+            price: "999.00"
+        }
+    ]
 }
 export const bookReducer = (state = initstate, action) => {
+    console.log("ACTION",action);
     switch (action.type) {
-        case "POSTBOOK":
-            console.log("ACTION and its type.....", action);
-
+        case "FETCHBOOK":
+            return state
+        case "FETCHBOOK_SUCCESS":
             return {
-                book: [...state.book, ...action.payload]
+                books: [...state.books, ...action.payload]
             }
-            case "DELBOOK":
-                console.log("ACTION and its type.....", action);
-
-                let books = state.book.filter(book => book.id !== action.payload.id);
-                return books
-            default:
-                return state;
+        case "FETCHBOOK_FAILURE":
+            return {
+                books:action.payload
+            }
+        case "DELBOOK":
+            let books = state.books.filter(book => book.id !== action.payload.id);
+            return {
+                books: books
+            }
+        default:
+            return state;
     }
 
 

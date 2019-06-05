@@ -8,9 +8,9 @@ import {
 } from './bookReducer'
 // create the store
 import {
-    bookReducer
+    cartReducer
 } from './cartReducers'
 export default combineReducers({
-    book: bookReducer,
+    books: bookReducer,
     cart: cartReducer
 })

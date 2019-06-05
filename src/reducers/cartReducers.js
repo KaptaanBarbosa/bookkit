@@ -2,17 +2,14 @@ const initState = {
     cart: []
 }
 
-const cartReducer = () => {
+export const cartReducer = (state = initState, action) => {
     switch (action.type) {
         case "ADD_ITEM":
-            console.log("ACTION and its type.....", action);
-
-            return {
-                cart: [...state.cart, ...action.payload]
-            }
-
-            default:
-                return state;
+            console.log("ACTION cart reducer.....", action);
+            const addedItem = [action.payload];
+            return [...state.cart, ...addedItem]
+        default:
+            return state;
     }
 
 }
