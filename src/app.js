@@ -8,14 +8,14 @@ import React from 'react';
 import {render} from 'react-dom'
 import logger from 'redux-logger';
 
-import BooksList from './components/pages/booksList'
+import BooksListPage from './components/pages/BooksListPage'
 import reducers from './reducers/index'
 
 const middleware = applyMiddleware(logger)
 const store = createStore(reducers, middleware);
     render( 
 <Provider store = {store}>
-    <BooksList/>
+    <BooksListPage/>
 </Provider>
 ,document.getElementById("app"));
 // to eavesdrop of store affairs

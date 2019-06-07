@@ -22,26 +22,29 @@ class BooksList extends Component {
 
         return (<div> 
             <Fragment>
-            <Navbar color="faded" light expand="md">
-    
-              <NavbarBrand href="/">
-                 Pustak yaha se khareedein
-              </NavbarBrand>
-              <Nav className="ml-auto" navbar>
-    
-                <NavItem className="d-flex align-items-center">
-                  <NavLink className="font-weight-bold" href="/">Home</NavLink>
-                </NavItem>
-                <NavItem className="d-flex align-items-center">
-                  <NavLink className="font-weight-bold">
-                    Cart
-                  </NavLink>
-                </NavItem>
-    
-    
-              </Nav>
-            </Navbar>
-    
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Putak Bhandar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pustak Shrankhla</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Pustak Prashth</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">galla</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+          <hr></hr>
             <Container class="container-fluid">
     
     
