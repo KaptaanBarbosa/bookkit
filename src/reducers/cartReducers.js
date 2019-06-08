@@ -4,7 +4,7 @@ const initState = {
 
 export const cartReducer = (state = initState, action) => {
     switch (action.type) {
-        case "ADD_ITEM":
+        case "ADDTOCART_SUCCESS":
             console.log("ACTION cart reducer.....", action);
             const addedItem = [action.payload];
             return [...state.cart, ...addedItem]

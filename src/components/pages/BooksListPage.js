@@ -13,13 +13,34 @@ import {
 } from '../../actions/booksaction';
 import {bindActionCreators} from 'redux';
 import BookItem from '../templates/bookitem'
+import BooksForm from '../templates/booksForm'
+import Cart from '../templates/Cart'
+import NavigationBar from '../navigation/navigation'
 class BooksListPage extends Component {
-    
+    constructor(props){
+      super(props)
+        this.state = {
+            showModal:false
+        }
+      this.handleHideModal = this.handleHideModal.bind(this);
+      this.handleShowModal = this.handleShowModal.bind(this);
+
+    }
+    getInitialState(){
+        return {showModal: false}
+    }
+    handleHideModal(){
+        this.setState({showModal: false})
+    }
+    handleShowModal(){
+         
+        this.setState({showModal: true})
+    }
  render(){
      
     const bookItem = this.props.books.books.map((books)=>{
         return (
-           <Col xs={12} sm={6} md={4}> 
+           <Col lg={4} sm={4} md={4}> 
             <BookItem books={books}/>
            </Col>
         )
@@ -41,8 +62,15 @@ class BooksListPage extends Component {
       </style>
          <Container>
          <Row>
-          {bookItem}
+         <NavigationBar/>
+         </Row>
+         <Row style={{marginTop:'20px'}}>
+            {bookItem}
          </Row> 
+         <div className="row">
+         <button className="btn btn-default btn-primary" onClick={this.handleShowModal}>Add Books</button>
+         {this.state.showModal ? <BooksForm handleHideModal={this.handleHideModal}/> : null}
+        </div>
          </Container>
     </>
     
@@ -53,7 +81,8 @@ class BooksListPage extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        books: state.books
+        books: state.books,
+        cart: state.cart.cart
     }
   }    
  

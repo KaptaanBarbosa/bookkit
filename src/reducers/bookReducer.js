@@ -21,6 +21,18 @@ const initstate = {
             title: "Hari Putter aadhe khoon wala Rajkumar",
             description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
             price: "999.00"
+        },
+        {
+            id: 56,
+            title: "Hari Putter aadhe khoon wala Rajkumar",
+            description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+            price: "999.00"
+        },
+        {
+            id: 546,
+            title: "Hari Putter aadhe khoon wala Rajkumar",
+            description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
+            price: "999.00"
         }
     ]
 }
