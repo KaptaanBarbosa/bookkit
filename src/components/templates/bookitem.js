@@ -26,7 +26,7 @@ class BookItem extends Component{
    const books = this.props.books;
       return(
         <div key={books.id} > 
-        <Card style={{"padding-bottom":"20px"}}>
+        <Card style={{"margin-bottom":"20px"}}>
         <Card.Img variant="top" src="holder.js/100px180" />
         <Card.Body>
           <Card.Title>{books.title}</Card.Title>

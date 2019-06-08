@@ -60,10 +60,6 @@ class BooksListPage extends Component {
         }
         `}
       </style>
-         <Container>
-         <Row>
-         <NavigationBar/>
-         </Row>
          <Row style={{marginTop:'20px'}}>
             {bookItem}
          </Row> 
@@ -71,7 +67,6 @@ class BooksListPage extends Component {
          <button className="btn btn-default btn-primary" onClick={this.handleShowModal}>Add Books</button>
          {this.state.showModal ? <BooksForm handleHideModal={this.handleHideModal}/> : null}
         </div>
-         </Container>
     </>
     
      )

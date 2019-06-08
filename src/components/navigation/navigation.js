@@ -11,7 +11,7 @@ class NavigationBar extends Component{
               <Navbar.Brand href="#home">BookCart</Navbar.Brand>
               <Nav className="mr-auto">
                 <Nav.Link href="/Home">Home</Nav.Link>
-                <Nav.Link href="/Plp">PlP</Nav.Link>
+                <Nav.Link href="/Productlist">Productlist</Nav.Link>
                 <Nav.Link href="/Cart">Cart</Nav.Link>
                 <Nav.Link href="/Checkout">Checkout</Nav.Link>
 
