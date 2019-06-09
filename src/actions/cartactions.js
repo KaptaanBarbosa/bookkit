@@ -20,6 +20,19 @@ export const addtocartfailure = () => ({
     }
 })
 
-export const addtocart = () => ({
-    type: "ADDTOCART"
+export const deleteItemFromCart = () => ({
+    type: "DELETETOCART"
 });
+
+export const deleteItemFromCartSuccess = (data) => ({
+    type: "DELETETOCART_SUCCESS",
+    payload: data.payload
+})
+
+export const deleteItemFromCartFailure = () => ({
+    type: "DELETETOCART_FAILURE",
+    payload: {
+      "ERROR":"Something went terribly wrong :( :("
+    }
+})
+

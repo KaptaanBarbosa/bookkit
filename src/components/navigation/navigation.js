@@ -5,6 +5,11 @@ import {
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 class NavigationBar extends Component{
+        
+        showCartWindow(e){
+          console.log("------->>>>>>",e)   
+        }
+
         render(){
             console.log("-------->>>>>",this.props.itemsInCart.cart.length);
            return(
@@ -19,7 +24,7 @@ class NavigationBar extends Component{
 
               </Nav>
               <Form inline>
-              <Button bg="dark" variant="dark" class="btn">
+              <Button onClick={this.showCartWindow} bg="dark" variant="dark" class="btn">
                 Cart <span class="badge badge-info">{this.props.itemsInCart.cart.length}</span>
                </Button>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />

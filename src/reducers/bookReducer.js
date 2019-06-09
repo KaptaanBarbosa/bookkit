@@ -34,7 +34,8 @@ const initstate = {
             description: "Hari Putter  pehli baar hugbhar ki duniya main kadam rakhta hai jaha uski tarah naye jadooii tamanche aate hai",
             price: "999.00"
         }
-    ]
+    ],
+    showaddbooks:false
 }
 export const bookReducer = (state = initstate, action) => {
     console.log("ACTION",action);
@@ -54,6 +55,18 @@ export const bookReducer = (state = initstate, action) => {
             return {
                 books: books
             }
+        case "ADDBOOKS":
+            console.log("add books ---->>>>",action.payload,state.books);
+            let newBooks = JSON.parse(JSON.stringify(state.books))
+            console.log("New Books ::: \n",newBooks);
+            newBooks.push(action.payload);
+            return{
+               books:newBooks
+            }  
+        case "SHOWADDBOOKS":
+            const newState = JSON.parse(JSON.stringify(state));
+            newState.showaddbooks=action.payload;
+            return newState;   
         default:
             return state;
     }

@@ -13,7 +13,6 @@ class BookItem extends Component{
       this.addItemInCart = this.addItemInCart.bind(this);
   }  
   addItemInCart(){
-   console.log('hgfgfgh',this.props)   
    const books = {
        id:this.props.books.id,
        title:this.props.books.title,

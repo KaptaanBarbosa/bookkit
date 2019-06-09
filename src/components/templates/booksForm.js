@@ -2,48 +2,60 @@ import React,{Component} from 'react';
 var ReactDOM = require('react-dom');
 
 import {
-    Card,Row, Col,Button,Panel,FormGroup,FormControl,FormLabel,
+    Card,Row, Col,Button,Panel,FormGroup,FormControl,FormLabel,Modal
     } from 'react-bootstrap'; 
 
    
-import {fetchbooksuccess} from '../../actions/booksaction';
+import {addbooks} from '../../actions/booksaction';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 class BooksForm extends Component{
-    constructor(props){
-        super(props);   
-      
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    componentDidMount(){
-        console.log("This is working 1");
-        $(ReactDOM.findDOMNode(this)).modal('show');
-        $(ReactDOM.findDOMNode(this)).on('hidden.bs.modal', this.props.handleHideModal);
-    }
+      constructor(props) {
+            super(props);
+        
+            this.handleShow = this.handleShow.bind(this);
+            this.handleClose = this.handleClose.bind(this);
+            this.handleShowModal = this.handleShowModal.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.state = {
+                show: false,
+            };
+        }
+    
+      handleClose() {
+        this.setState({ show: false });
+      }
+     
+      handleShow() {
+        this.setState({ show: true });
+      }
+    
+      handleShowModal() {
+        this.setState({ show: !this.state.show });
+      }
+
      handleSubmit(){
-         console.log(this);
-         const data = [{
+         console.log("@@@@@@@",this);
+         const data = {
             title : document.getElementById('title').value,
             description:document.getElementById('description').value,
             price:'Rs '+ document.getElementById('price').value.toString()
-         }];
-        console.log("data:",data);
-        this.props.getbook(data);
+         };
+        console.log("data:",data,"props \n",this.props);
+        this.props.addbooks(data);
+        this.handleClose();
      }
     render(){
-        console.log("This is working 2");
+        console.log("This is working 2",this.props.books);
+            return (
+                <>
+                <button className="btn btn-default btn-primary" onClick={this.handleShowModal}>Add Books</button>
 
-        return(
-            <div>
-
-            <div className="modal fade">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 className="modal-title">Modal title</h4>
-                </div>
-                <div className="modal-body">
+                  <Modal show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                      <Modal.Title>Add Book</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
                         <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Title</label>
@@ -57,26 +69,31 @@ class BooksForm extends Component{
                             <label for="price">Enter Price</label>
                             <input type="text" class="form-control" id="price" aria-describedby="title" placeholder="Enter Title"/>
                         </div>
-                </form>
-                </div>
-                <div className="modal-footer">
-                  <button onClick={this.handleSubmit} type="button" className="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
-     
-          </div>
-        )
+                        </form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                      <Button variant="secondary" onClick={this.handleClose}>
+                        Close
+                      </Button>
+                      <Button variant="primary" onClick={this.handleSubmit}>
+                        Save Changes
+                      </Button>
+                    </Modal.Footer>
+                  </Modal>
+                </>
+              )
     }
 
 }    
 
 const mapDispatchToProps = (dispatch) => {
- return bindActionCreators({ getbook: fetchbooksuccess
- },dispatch)
+ return bindActionCreators({addbooks},dispatch)
 }
 
-export default connect(null,mapDispatchToProps)(BooksForm);
+const mapStateToProps = (state) =>{
+    return{
+      books:state.books,
+    }
+
+}
+export default connect(mapStateToProps,mapDispatchToProps)(BooksForm);

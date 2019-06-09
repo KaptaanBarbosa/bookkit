@@ -9,12 +9,11 @@ import {
 
 import {connect} from 'react-redux';
 import {
-    fetchbooksuccess
+    fetchbooksuccess,showaddbooks
 } from '../../actions/booksaction';
 import {bindActionCreators} from 'redux';
 import BookItem from '../templates/bookitem'
 import BooksForm from '../templates/booksForm'
-import Cart from '../templates/Cart'
 import NavigationBar from '../navigation/navigation'
 class BooksListPage extends Component {
     constructor(props){
@@ -23,7 +22,6 @@ class BooksListPage extends Component {
             showModal:false
         }
       this.handleHideModal = this.handleHideModal.bind(this);
-      this.handleShowModal = this.handleShowModal.bind(this);
 
     }
     getInitialState(){
@@ -32,19 +30,16 @@ class BooksListPage extends Component {
     handleHideModal(){
         this.setState({showModal: false})
     }
-    handleShowModal(){
-         
-        this.setState({showModal: true})
-    }
- render(){
-     
-    const bookItem = this.props.books.books.map((books)=>{
-        return (
-           <Col lg={4} sm={4} md={4}> 
-            <BookItem books={books}/>
-           </Col>
-        )
-    })
+
+    render(){
+        console.log("&&&&&&&&&",this.props)
+        const bookItem = this.props.books.books.map((books)=>{
+            return (
+            <Col lg={4} sm={4} md={4}> 
+                <BookItem books={books}/>
+            </Col>
+            )
+        })
     return(
         <>
         <style type="text/css">
@@ -60,12 +55,12 @@ class BooksListPage extends Component {
         }
         `}
       </style>
+
          <Row style={{marginTop:'20px'}}>
             {bookItem}
          </Row> 
          <div className="row">
-         <button className="btn btn-default btn-primary" onClick={this.handleShowModal}>Add Books</button>
-         {this.state.showModal ? <BooksForm handleHideModal={this.handleHideModal}/> : null}
+         <BooksForm/>
         </div>
     </>
     
@@ -83,7 +78,7 @@ const mapStateToProps = (state) => {
  
   const mapDispatchToProps = (dispatch) => {
     return bindActionCreators({
-        getbook: fetchbooksuccess,
+        getbook: fetchbooksuccess,showaddbooks
     },dispatch);
   }
  
