@@ -25,11 +25,12 @@ const store = createStore(reducers, middleware);
     <Router history={createBrowserHistory()}>
     <NavigationBar/>
     <div>
-      <Route exact path="/" component={BooksListPage} />
-      <Route path="/Home" component={BooksListPage} />
-      <Route path="/Productlist" component={BooksListPage} />
-      <Route path="/Cart" component={Cart} />
-      <Route path="/Checkout" component={() => <div>yo!</div>}  />
+      <Route exact path="/" component={BooksListPage}/>
+        <Route path="/Home" component={() => <div>yo home page is coming homie!</div>} />
+
+        <Route path="/Productlist" component={BooksListPage} />
+        <Route path="/Cart" component={Cart} />
+        <Route path="/Checkout" component={() => <div>yo!</div>}  />
     </div>
   </Router>
 </Provider>

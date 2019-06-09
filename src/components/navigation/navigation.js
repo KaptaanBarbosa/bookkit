@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import {
     Nav,Navbar,Form,FormControl,Button
   } from 'react-bootstrap'; 
-
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
 class NavigationBar extends Component{
         render(){
+            console.log("-------->>>>>",this.props.itemsInCart.cart.length);
            return(
             <>
             <Navbar bg="dark" variant="dark" style={{width:'100%'}}>
@@ -17,6 +19,9 @@ class NavigationBar extends Component{
 
               </Nav>
               <Form inline>
+              <Button bg="dark" variant="dark" class="btn">
+                Cart <span class="badge badge-info">{this.props.itemsInCart.cart.length}</span>
+               </Button>
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-info">Search</Button>
               </Form>
@@ -27,4 +32,10 @@ class NavigationBar extends Component{
         }
 }
 
-export default NavigationBar;
+const mapStateToProps = (state) =>{
+  return {
+      itemsInCart:state.cart
+  }
+}
+
+export default connect(mapStateToProps,null)(NavigationBar);

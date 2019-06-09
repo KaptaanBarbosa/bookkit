@@ -6,9 +6,7 @@ import {bindActionCreators} from 'redux';
 class Cart extends Component{
 
     renderEmptyCart(){
-        return (<div>
-              <h4> Your cart is empty !!!</h4>
-            </div>);
+        return (<div><h4> Your cart is empty !!!</h4></div>);
     }
 
     renderCart(){
@@ -26,14 +24,16 @@ class Cart extends Component{
                )
         })
        
+        return cartItemList;
     }
 
     render(){
+        console.log("Props....",this.props)
         if(this.props.cart[0]){
             return this.renderCart();
         }
         else{
-            this.renderEmptyCart();
+            return this.renderEmptyCart();
         }
     }
 
@@ -53,4 +53,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps,null)(Cart)
+export default connect(mapStateToProps)(Cart)
