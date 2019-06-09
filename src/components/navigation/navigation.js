@@ -4,6 +4,8 @@ import {
   } from 'react-bootstrap'; 
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
+import BooksForm from '../templates/booksForm'
+
 class NavigationBar extends Component{
         
         showCartWindow(e){
@@ -11,7 +13,6 @@ class NavigationBar extends Component{
         }
 
         render(){
-            console.log("-------->>>>>",this.props.itemsInCart.cart.length);
            return(
             <>
             <Navbar bg="dark" variant="dark" style={{width:'100%'}}>
@@ -21,9 +22,11 @@ class NavigationBar extends Component{
                 <Nav.Link href="/Productlist">Productlist</Nav.Link>
                 <Nav.Link href="/Cart">Cart</Nav.Link>
                 <Nav.Link href="/Checkout">Checkout</Nav.Link>
+                add your book<BooksForm/>
 
               </Nav>
               <Form inline>
+
               <Button onClick={this.showCartWindow} bg="dark" variant="dark" class="btn">
                 Cart <span class="badge badge-info">{this.props.itemsInCart.cart.length}</span>
                </Button>

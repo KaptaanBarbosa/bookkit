@@ -60,7 +60,6 @@ class BooksListPage extends Component {
             {bookItem}
          </Row> 
          <div className="row">
-         <BooksForm/>
         </div>
     </>
     
