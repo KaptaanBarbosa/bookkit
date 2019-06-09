@@ -1,7 +1,8 @@
 //create and dispatch the action
 import {
     createStore,
-    applyMiddleware
+    applyMiddleware,
+    compose
 } from 'redux';
 import {Provider} from 'react-redux'
 import React from 'react';
@@ -16,10 +17,22 @@ import {
     Link,
     Route // for later
   } from 'react-router-dom'
+import { composeWithDevTools } from 'redux-devtools-extension';
+
 import { createBrowserHistory } from 'history'
 
-const middleware = applyMiddleware(logger)
-const store = createStore(reducers, middleware);
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+    }) : compose;
+const middlewares = [logger]
+const enhancer = composeEnhancers(
+  applyMiddleware(...middlewares),
+);
+const store = createStore(reducers, enhancer);
+
     render( 
 <Provider store = {store}>
     <Router history={createBrowserHistory()}>
