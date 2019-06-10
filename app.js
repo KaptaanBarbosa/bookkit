@@ -3,11 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var app = express();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
-var app = express();
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/bookshop');
+let Books = require('./models/books')
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -23,20 +25,23 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.get('*',(req,res)=>{
   res.sendFile(path.resolve(__dirname,'public','index.html'))
 })
-// app.get('/Home',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'public','index.html'))
-// })
-// app.get('/Cart',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'public','index.html'))
-// })
-// app.get('/Checkout',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'public','index.html'))
-// })
-// app.get('/Productlist',(req,res)=>{
-//   res.sendFile(path.resolve(__dirname,'public','index.html'))
-// })
+// Here the crud apis starts
+// --- POST ---
+app.post('/savebooks',(req,res)=>{
+  const bookdata = req.body;
+  console.log("inside the post book functionality ************",bookdata)
+  Books.create(bookdata,(err,books)=>{
+    if(err){
+      console.log("I am inside the error \n \n ::::::::::::::::::::::::: \n",err);
+      throw err;      
+    } 
+    res.json(books);
+  })
+})  
+//Here the crud apis ends
 
-// catch 404 and forward to error handler
+
+
 app.use(function(req, res, next) {
   next(createError(404));
 });
@@ -49,6 +54,10 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
+  res.json({
+    message: err.message,
+    error: err
+  });
   res.render('error');
 });
 app.use(express.static('public'));
