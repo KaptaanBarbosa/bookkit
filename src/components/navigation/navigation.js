@@ -22,7 +22,7 @@ class NavigationBar extends Component{
                 <Nav.Link href="/Productlist">Productlist</Nav.Link>
                 <Nav.Link href="/Cart">Cart</Nav.Link>
                 <Nav.Link href="/Checkout">Checkout</Nav.Link>
-                add your book<BooksForm/>
+                <BooksForm/>
 
               </Nav>
               <Form inline>
